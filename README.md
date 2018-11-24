@@ -1,7 +1,7 @@
 # NumberDetect
- 使用TensorFlow object detection API 训练了ssd+mobilenetV2，最后导出tflite模型，并且成功在ios上运行了  
- 数据集使用的是 SVHN http://ufldl.stanford.edu/housenumbers/  
- 教程主要参照了谷歌官方 https://medium.com/tensorflow/training-and-serving-a-realtime-mobile-object-detector-in-30-minutes-with-cloud-tpus-b78971cf1193  
+ 使用TensorFlow object detection API 训练了ssd+mobilenetV2，最后导出tflite模型，并且成功在ios上运行了 
+ 数据集使用的是 SVHN http://ufldl.stanford.edu/housenumbers/ 
+ 教程主要参照了谷歌官方 https://medium.com/tensorflow/training-and-serving-a-realtime-mobile-object-detector-in-30-minutes-with-cloud-tpus-b78971cf1193 
 
 #### 因为在win10，mac，Ubuntu上各跑了一遍，踩坑无数，事后记录一下踩过的坑（Linux是最好的操作系统！)
 
@@ -26,7 +26,7 @@ http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_201
 
 ### cocoapi安装
 win10上cocoapi需要安装visual studio 2015，最好全勾上，主要是要VC的platform SDK
-要先  
+要先 
 
     pip install Cython
     pip install pycocotools
@@ -60,10 +60,9 @@ mac自带一个python2.7，装完python3.6.7以后建议在.bash_profile中加�
 记得先装用离线包装一个最新的tensorboard
 
 ### Python环境
-ubuntu也自带了python2.7，和python3.5，建议更新到3.6
+ubuntu也自带了python2.7，和python3.5，建议更新到3.6
 用venv环境最好
-经常会出现No module named "object_detection" 的报错，需要到
-tensorflow/models/research/ 目录中输入：  
+经常会出现No module named "object_detection" 的报错，需要到tensorflow/models/research/ 目录中输入： 
 
     export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
 
@@ -71,13 +70,13 @@ ubuntu也自带了python2.7，和python3.5，建议更新到3.6
 开始训练的时候pillow报错了，发现Ubuntu自带的pillow比较老，要更新到最新版本（5.3.0）
 
 ### 训练config配置
-如果要减小模型体积可以使用量化训练，int 8位，比float的32位小了 3/4 但量化训练貌似更吃配置
-float的时候batch_size = 16，GTX 960每步训练0.5 ~ 0.6秒  
+如果要减小模型体积可以使用量化训练,int8位，比float的32位小了 3/4 但量化训练貌似更吃配置
+float的时候batch_size = 16，GTX 960每步训练0.5 ~ 0.6秒 
 [quantization]()模式下训练的时候batch_size =8 ，每步训练要1.2秒
 这配置吃的也太高了，各个参数的作用还没不理解，具体原因待查
 
 ### 模型导出
-转换成tflite格式的模型一定要使用bazel不然会报错：
+转换成tflite格式的模型一定要使用bazel不然会报错：
 
     bazel run -c opt tensorflow/contrib/lite/toco:toco -- \
     --input_file=$OUTPUT_DIR/tflite_graph.pb \
