@@ -20,9 +20,9 @@ object detection API需要制作成tfrecord格式的数据集，SVHN的数据集
         xmaxs.append((bbox['left'][i] + bbox['width'][i]) / width)
 
 ### checkpoint下载
-因为采用了MobileNetV2，已经训练好的模型在 
+因为采用了MobileNetV2，已经训练好的模型在 
 http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz 
-下载,github上的2个模型都没跑起来
+下载,github上的2个模型都没跑起来
 
 ### cocoapi安装
 win10上cocoapi需要安装visual studio 2015，最好全勾上，主要是要VC的platform SDK
@@ -40,8 +40,8 @@ ssd模型需要用 [export_tflite_ssd_graph.py]() 导出，然后通过toco导�
     osx 10.14.1
     tensorflow 1.12.0
     protoc 3.3.0
-直接用pypi装是tensorflow是1.11的[（清华源）](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/) ，得下载1.12。0的离线包.whl安装
-记得先装用离线包装一个最新的tensorboard，mac没有gpu版本就不用装-gpu了
+直接用pypi装是tensorflow是1.11的[（清华源）](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/) ，得下载1.12.0的离线包.whl安装
+记得先用离线包装一个最新的tensorboard，mac没有gpu版本就不用装-gpu了
 
 ### Python环境
 mac自带一个python2.7，装完python3.6.7以后建议在.bash_profile中加上（用venv环境最好）：
@@ -56,7 +56,7 @@ mac自带一个python2.7，装完python3.6.7以后建议在.bash_profile中加�
     Ubuntu 16.04
     tensorflow 1.12.0
     protoc 3.3.0
-直接用pypi装是tensorflow是1.11的（清华源），得下载1.12。0的离线包.whl安装
+直接用pypi装是tensorflow是1.11的（清华源），得下载1.12。0的离线包.whl安装
 记得先装用离线包装一个最新的tensorboard
 
 ### Python环境
